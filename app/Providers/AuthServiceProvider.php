@@ -5,8 +5,9 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use App\Repositories\Interfaces\EloquantRepositoryInterface;
+use App\Repositories\Interfaces\UserProfileRepositoryInterface;
 use App\Services\CacheKeyFormatter;
+use App\Services\UserProfileService;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
             return new CachedEloquentUserProvider(
                 hasher: $app['hash'],
                 model: $config['model'],
-                userRepository: $app->make(EloquantRepositoryInterface::class),
+                userRepository: $app->make(UserProfileRepositoryInterface::class),
                 keyFormatter: $app->make(CacheKeyFormatter::class)
             );
         });

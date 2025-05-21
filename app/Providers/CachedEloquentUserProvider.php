@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Models\User;
-use App\Repositories\Interfaces\EloquantRepositoryInterface;
-use App\Repositories\Interfaces\SingleUserRepositoryInterface;
+use App\Repositories\Interfaces\UserProfileRepositoryInterface;
 use App\Services\CacheKeyFormatter;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -22,7 +21,7 @@ class CachedEloquentUserProvider extends EloquentUserProvider
     public function __construct(
         $hasher,
         string $model,
-        private readonly EloquantRepositoryInterface $userRepository,
+        private readonly UserProfileRepositoryInterface $userRepository,
         private readonly CacheKeyFormatter $keyFormatter
     ) {
         parent::__construct($hasher, $model);
